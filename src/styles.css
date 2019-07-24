@@ -1,0 +1,21 @@
+.App {
+  font-family: sans-serif;
+  text-align: center;
+}
+
+.App ul{
+  list-style: none;
+  text-align: center;
+  font-size: 30px;
+  margin:10px 0;
+}
+
+.App ul li{
+  display: inline-block;
+  padding:5px 10px;
+}
+
+li :hover{
+  cursor: pointer;
+  color:#61dafb;
+}

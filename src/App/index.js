@@ -1,9 +1,11 @@
 import React, { useEffect } from "react";
 import { BrowserRouter, Switch, Route, Link } from "react-router-dom";
+import {ConnectedRouter} from 'connected-react-router'
 import A from "../routes/A";
 import B from "../routes/B";
 import { connect } from "react-redux";
 import AuthRoute from "../components/AuthRoute";
+import { push } from 'connected-react-router'
 import { UPDATE_LOGGED_USER_STATE } from "./globalReducer";
 
 function App(props) {
@@ -25,7 +27,12 @@ function App(props) {
   return (
     <div className="App">
       <h1>Router demo</h1>
-      <BrowserRouter>
+      <button onClick={
+          ()=>{
+              props.dispatch(push('/'))
+          }
+      }>go home</button>
+      <ConnectedRouter history={props.history}>
         <ul>
           <li>
             <Link to="/">a</Link>
@@ -41,9 +48,10 @@ function App(props) {
             component={B}
             pending={props.pending}
             logged={props.logged}
+            // {...props}
           />
         </Switch>
-      </BrowserRouter>
+      </ConnectedRouter>
     </div>
   );
 }
@@ -64,7 +72,9 @@ export default connect(
           pending: false,
           logged: true
         }
-      })
+      }),
+      push,
+      dispatch
     };
   }
 )(App);

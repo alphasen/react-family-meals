@@ -1,17 +1,30 @@
 import React from "react";
 import { Link, Route, Switch } from "react-router-dom";
+import { push } from 'connected-react-router'
 import d from "../components/d";
 import e from "../components/e";
 import f from "../components/f";
+import store from '../configureStore'
+import { connect } from 'react-redux';
 
 /**
  * 路由嵌套仍然需要识别它们的完整路径才能匹配
  * @param {*} props
  */
-export default function B(props) {
+function B(props) {
   return (
     <div>
       B
+      <div>
+          <h3>store.dispatch(push(url))</h3>
+          <button onClick={
+              ()=>{ // 可以使用下面这三种方式跳转
+            //       store.dispatch(push(`${props.match.url}/e`))
+                // props.push(`${props.match.url}/e`)
+                // props.history.push(`${props.match.url}/f`)
+              }
+          }>store.dispatch(push(`${props.match.url}/e`))</button>
+      </div>
       <ul>
         <li>
           {/* props.match.url 用在Link中 */}
@@ -32,3 +45,5 @@ export default function B(props) {
     </div>
   );
 }
+
+export default connect(null,{push})(B)

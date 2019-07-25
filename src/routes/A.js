@@ -1,5 +1,9 @@
 import React from 'react'
+import D from '../components/d'
 
 export default function A(props){
-  return <div>A</div>
+    console.log('props :', props);
+    return <div>A
+        <D/>
+    </div>
 }

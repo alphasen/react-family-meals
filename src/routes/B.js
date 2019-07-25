@@ -12,6 +12,8 @@ import { connect } from 'react-redux';
  * @param {*} props
  */
 function B(props) {
+    console.log('store :', store.getState());
+//   console.log('B props',props) // 可以拿到 `history` `location` `match`
   return (
     <div>
       B
@@ -46,4 +48,15 @@ function B(props) {
   );
 }
 
-export default connect(null,{push})(B)
+export default B
+
+// 将router和redux连接后redux可以获取router对象
+// 通过connected-router-redux提供的操作路由action
+// ```
+// @@router/CALL_HISTORY_METHOD
+// ```
+// export default connect((state)=>({
+//     pathname:state.router.location.pathname,
+//     search:state.router.location.search,
+//     hash:state.router.location.hash
+// }),{push})(B)
